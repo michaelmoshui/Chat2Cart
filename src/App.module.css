@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.display {
+  background-color: lightblue;
+}
+
+.chat {
+  background-color: lightgreen;
+}
+
+.history {
+  background-color: #001f3f; /* Very dark blue */
+  border-radius: 10px 0 0 0;
+  position: relative;
+}
+
+.squareButton {
+  position: absolute;
+  top: 50px;
+  left: -40px;
+  width: 40px;
+  height: 50px;
+  background-color: #001f3f; /* Adjust button color */
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 40% 10px;
+  width: 100%;
+  height: 100vh;
+  transition: grid-template-columns 0.2s ease;
+}

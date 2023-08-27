@@ -1,0 +1,20 @@
+.message {
+  padding: 8px 12px;
+  margin: 8px;
+  border-radius: 6px;
+  max-width: 70%;
+}
+
+.user {
+  display: flex;
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+}
+
+.agent {
+  display: flex;
+  align-self: flex-start;
+  background-color: #f0f0f0;
+  color: #333;
+}
