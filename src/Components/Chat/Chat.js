@@ -85,6 +85,7 @@ const Chat = ({ amazon, setAmazon }) => {
   const adjustTextareaHeight = (element) => {
     element.style.height = "auto";
     element.style.height = `${element.scrollHeight - 20}px`;
+    console.log(element.style.height);
   };
 
   const handleTextChange = (event) => {
