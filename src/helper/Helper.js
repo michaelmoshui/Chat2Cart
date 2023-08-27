@@ -7,6 +7,9 @@ const getResponse = async (text) => {
     `${process.env.REACT_APP_BACKEND_URL}/get_objects`,
     {
       user_input: text,
+    },
+    {
+      withCredentials: true,
     }
   );
   return data;
