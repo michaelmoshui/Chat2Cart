@@ -12,19 +12,6 @@ const Chat = ({ amazon, setAmazon }) => {
   const textA = useRef(null);
   const chatMes = useRef(null);
 
-  // const [hchange, setHchange] = useState({
-  //   previous: 0,
-  //   new: 0,
-  // });
-
-  // useEffect(() => {
-  //   setHchange({
-  //     ...hchange,
-  //     ["previous"]: window.getComputedStyle(textA.current).height,
-  //     ["new"]: window.getComputedStyle(textA.current).height,
-  //   });
-  // }, [textA]);
-
   const sendMessage = async () => {
     try {
       setLoading(true);
@@ -47,7 +34,7 @@ const Chat = ({ amazon, setAmazon }) => {
           }
           tempQue.push(tempKey);
         }
-        console.log(tempQue);
+
         setAmazon([...amazon, tempQue]);
       }
 
@@ -98,25 +85,10 @@ const Chat = ({ amazon, setAmazon }) => {
   const adjustTextareaHeight = (element) => {
     element.style.height = "auto";
     element.style.height = `${element.scrollHeight - 20}px`;
-    // chatMes.current.style.height =
-    //   parseInt(
-    //     window
-    //       .getComputedStyle(textA.current)
-    //       .height.slice(
-    //         0,
-    //         window.getComputedStyle(textA.current).height.length - 2
-    //       )
-    //   ) -
-    //   (hchange["new"] - hchange["previous"]);
   };
 
   const handleTextChange = (event) => {
     setText(event.target.value);
-    // setHchange({
-    //   ...hchange,
-    //   ["previous"]: hchange["new"],
-    //   ["new"]: window.getComputedStyle(textA.current).height,
-    // });
     if (event.target.scrollHeight < 250) {
       adjustTextareaHeight(event.target);
     } else {

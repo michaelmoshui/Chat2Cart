@@ -17,6 +17,10 @@ export default function History() {
           Enter keywords in the chat bot on the homepage, such as "white
           clothing for holidays."
         </p>
+        <p>
+          Enter an asterisk * in front of your message for a pure informational
+          response without product output.
+        </p>
 
         <h3>3. Browsing Product Results</h3>
         <p>

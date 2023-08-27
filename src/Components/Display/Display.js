@@ -39,7 +39,7 @@ const LeftPage = ({ amazon }) => {
                               src={`${item?.thumbnail}`}
                               alt=""
                               onClick={() => {
-                                window.open("https://google.ca", "_blank");
+                                window.open(`${item?.url}`, "_blank");
                               }}
                             ></img>
 
