@@ -11,6 +11,20 @@ const Chat = ({ amazon, setAmazon }) => {
   const [loading, setLoading] = useState(false);
   const textA = useRef(null);
   const chatMes = useRef(null);
+  const [chatHeight, setChatHeight] = useState([0, 0]);
+
+  useEffect(() => {
+    let height = window.getComputedStyle(textA.current).height;
+    height = parseInt(height.slice(0, height.length - 2));
+    setChatHeight([height, height]);
+  }, []);
+
+  useEffect(() => {
+    let difference = chatHeight[1] - chatHeight[0];
+    let height = window.getComputedStyle(chatMes.current).height;
+    height = parseInt(height.slice(0, height.length - 2));
+    chatMes.current.style.height = (height - difference).toString() + "px";
+  }, [chatHeight]);
 
   const sendMessage = async () => {
     try {
@@ -20,11 +34,12 @@ const Chat = ({ amazon, setAmazon }) => {
       setMessages([...messages, newMessage]);
       const response = await getResponse(text);
       console.log(response);
+
+      let tempQue = [];
       // if there are new items
       if (response.products.length > 0) {
         // change items to n x 3 format
         const items = response.products;
-        let tempQue = [];
         let count = 0;
         for (let i = 0; i < items.length / 3; i++) {
           let tempKey = [];
@@ -37,7 +52,7 @@ const Chat = ({ amazon, setAmazon }) => {
 
         setAmazon([...amazon, tempQue]);
       }
-
+      console.log(tempQue);
       // get message
       let newResponse = response.message;
       newResponse = {
@@ -86,6 +101,9 @@ const Chat = ({ amazon, setAmazon }) => {
     element.style.height = "auto";
     element.style.height = `${element.scrollHeight - 20}px`;
     console.log(element.style.height);
+    let height = element.style.height;
+    height = parseInt(height.slice(0, height.length - 2));
+    setChatHeight([chatHeight[1], height]);
   };
 
   const handleTextChange = (event) => {
@@ -112,51 +130,8 @@ const Chat = ({ amazon, setAmazon }) => {
           <div className={styles.inputContainer}>
             <PropagateLoader color="#b5d8e5" />
           </div>
-        ) : image ? (
-          <div className={styles.inputContainer}>
-            <input
-              hidden
-              id="imageMessage"
-              name="image"
-              type="file"
-              accept="image/*"
-              onChange={(event) => {
-                setImage(event.currentTarget.files[0]);
-              }}
-            />
-            <div>
-              {image.name.length > 20
-                ? image.name.slice(0, 20) + "..."
-                : image.name}
-            </div>
-            <button
-              onClick={() => {
-                setImage();
-              }}
-              className={styles.deleteButton}
-            >
-              Delete
-            </button>
-
-            <button className={styles.sendButton} onClick={sendImage}>
-              Send
-            </button>
-            <label htmlFor="imageMessage" className={styles.imageButton}>
-              Image
-            </label>
-          </div>
         ) : (
           <div className={styles.inputContainer}>
-            <input
-              hidden
-              id="imageMessage"
-              name="image"
-              type="file"
-              accept="image/*"
-              onChange={(event) => {
-                setImage(event.currentTarget.files[0]);
-              }}
-            />
             <textarea
               rows={1}
               className={styles.messageInput}
@@ -173,9 +148,6 @@ const Chat = ({ amazon, setAmazon }) => {
             >
               Send
             </button>
-            <label htmlFor="imageMessage" className={styles.imageButton}>
-              Image
-            </label>
           </div>
         )}
       </div>

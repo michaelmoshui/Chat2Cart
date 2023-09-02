@@ -9,7 +9,7 @@ const LeftPage = ({ amazon }) => {
     for (let i = 0; i < amazon.length; i++) {
       for (let j = 0; j < amazon[i].length; j++) {
         for (let k = 0; k < amazon[i][j].length; k++) {
-          iniBooleans[amazon[i][j][k].asin] = false;
+          iniBooleans[amazon[i][j][k]?.asin] = false;
         }
       }
     }
